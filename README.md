@@ -1,5 +1,3 @@
-# bfsuma-products
-JANE NYAMOITA BFSUMA PRODUCTS
 <!DOCTYPE html>
 <html lang="en">
 <head>

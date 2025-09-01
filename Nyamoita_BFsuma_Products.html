@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nyamoita BFsuma Products</title>
+<style>
+:root{
+  --pink-strong:#ff3399;
+  --pink-light:#ffe6f2;
+  --green-strong:#28a745;
+  --green-light:#d4edda;
+  --white:#fff;
+  --deep-green:#006400;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:Inter, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg,#ffe6f2,#d4edda);
+  color:#222;
+  overflow-x:hidden;
+}
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:12px 20px;
+  background: linear-gradient(90deg,var(--pink-strong),var(--green-strong));
+  z-index:1000;
+}
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  position:absolute;
+  left:20px;
+}
+.hamburger-btn{
+  font-size:1.5rem;
+  background: var(--green-strong);
+  border:none;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.brand-logo{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background: linear-gradient(135deg,var(--pink-strong),var(--green-strong));
+  font-weight:bold;
+  font-size:1.4rem;
+  color:#fff;
+  text-align:center;
+  line-height:48px;
+}
+.brand-name{
+  color:#fff;
+  font-weight:700;
+  font-size:1.2rem;
+  margin-left:8px;
+}
+nav.site-nav{
+  display:flex;
+  gap:18px;
+}
+nav.site-nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:6px 10px;
+  border-radius:6px;
+  transition:0.2s;
+}
+nav.site-nav a:hover{
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+.welcome-message{
+  margin:70px auto 20px;
+  text-align:left;
+  overflow:hidden;
+  white-space:nowrap;
+  position:relative;
+  height:50px;
+}
+.scroll-text{
+  display:inline-block;
+  color: var(--deep-green);
+  font-size:1.6rem;
+  font-weight:600;
+  white-space:nowrap;
+  animation: slideText 15s linear infinite;
+}
+.eye-fly{
+  position:absolute;
+  top:0;
+  right:-80px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  opacity:0;
+  pointer-events:none;
+}
+.welcome-message:hover .eye-fly{
+  opacity:1;
+  animation: flyLeft 10s linear infinite;
+}
+.eye{ font-size:1.8rem; }
+.flyer{
+  background: var(--pink-strong);
+  color: #fff;
+  font-size:0.9rem;
+  font-weight:600;
+  padding:4px 6px;
+  border-radius:6px;
+  white-space: nowrap;
+}
+@keyframes flyLeft{
+  0% { right: -80px; opacity:1; }
+  90% { right: calc(100% - 30px); opacity:1; }
+  100% { right: -80px; opacity:0; }
+}
+@keyframes slideText{
+  0%{ transform: translateX(100%);}
+  100%{ transform: translateX(-100%);}
+}
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-320px;
+  width:320px;
+  height:100%;
+  background:linear-gradient(180deg,var(--pink-light),var(--green-strong));
+  padding:20px;
+  z-index:1100;
+  transition:0.3s;
+  overflow:auto;
+}
+.sidebar.open{ left:0; }
+.sidebar .close-btn{ display:flex; justify-content:flex-end; margin-bottom:10px;}
+.sidebar .close-btn button{
+  background:var(--pink-strong);
+  color:#fff;
+  border:none;
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.sidebar .close-btn button:hover{ background:var(--green-strong);}
+.sidebar a{
+  display:flex;
+  gap:10px;
+  color:#fff;
+  text-decoration:none;
+  padding:8px 10px;
+  margin-bottom:6px;
+  font-weight:600;
+  border-radius:6px;
+  transition:0.2s;
+}
+.sidebar a:hover{
+  background:#fff;
+  color:var(--pink-strong);
+  transform:translateX(4px);
+}
+.sidebar h3{
+  color:#fff;
+  margin-top:12px;
+  margin-bottom:6px;
+  font-size:1.1rem;
+  font-weight:700;
+  border-bottom:1px solid rgba(255,255,255,0.3);
+  padding-bottom:4px;
+}
+main{
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px;
+}
+.hero{
+  height:320px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:2.2rem;
+  font-weight:700;
+  text-align:center;
+  background:linear-gradient(135deg,var(--green-strong),var(--pink-strong));
+  margin-bottom:18px;
+  transition: transform 0.3s;
+}
+.hero:hover{ transform: scale(1.02);}
+.content-section{
+  border-radius:12px;
+  padding:26px;
+  margin-bottom:18px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.content-section:nth-child(odd){ background: linear-gradient(135deg,var(--pink-light),var(--green-light)); }
+.content-section:nth-child(even){ background: linear-gradient(135deg,var(--green-light),var(--pink-light)); }
+.content-section:hover{ transform: translateY(-6px); box-shadow: 0 14px 36px rgba(0,0,0,0.12); }
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+.product-card{
+  border-radius:10px;
+  padding:14px;
+  background:#fff;
+  box-shadow:0 8px 22px rgba(0,0,0,0.06);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:0.3s;
+}
+.product-card:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:0 18px 40px rgba(0,0,0,0.15);
+}
+.product-card img{ width:100%; height:150px; object-fit:cover; border-radius:8px;}
+.buy-btn{
+  background:var(--pink-strong);
+  color:#fff;
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:700;
+  text-align:center;
+  transition:0.3s;
+}
+.buy-btn:hover{
+  background:var(--green-strong);
+  transform: scale(1.05);
+}
+.news-module{
+  width:220px;
+  max-width:90vw;
+  position:fixed;
+  bottom:0;
+  right:0;
+  height:70%;
+  background:linear-gradient(180deg,var(--green-light),var(--pink-light));
+  border-top-left-radius:60px;
+  border-top-right-radius:60px;
+  border-left:4px solid var(--pink-strong);
+  overflow:hidden;
+  padding:20px 10px 10px 10px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  z-index:900;
+  transition:0.3s;
+}
+.news-module h3{
+  text-align:center;
+  color:var(--pink-strong);
+  margin-bottom:10px;
+  font-size:1.2rem;
+}
+.news-wrapper{
+  display:flex;
+  flex-direction:column;
+  height:calc(100% - 40px);
+  overflow:hidden;
+  position:relative;
+}
+.news-items, .news-animation{
+  position:absolute;
+  width:100%;
+}
+.news-items p{
+  margin:8px 0;
+  background:#fff;
+  padding:6px 8px;
+  border-radius:6px;
+  color: var(--pink-strong);
+}
+.news-items{ 
+  animation: scrollBottomToCenter 12s linear infinite; 
+}
+@keyframes scrollBottomToCenter{
+  0%{ transform: translateY(100%);}
+  90%{ transform: translateY(50%);}
+  100%{ transform: translateY(50%);}
+}
+.news-animation{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100%;
+  opacity:0;
+  transition:opacity 0.5s;
+}
+.news-animation img{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+}
+footer{
+  text-align:center;
+  padding:20px;
+  color:#fff;
+  background:linear-gradient(90deg,var(--pink-strong),var(--green-strong));
+  margin-top:40px;
+}
+@media(max-width:880px){
+  nav.site-nav{ display:none;}
+  .news-module{
+    width:90vw;
+    height:50%;
+    border-top-left-radius:40px;
+    border-top-right-radius:40px;
+    right:5vw;
+    bottom:0;
+  }
+  .news-module h3{ font-size:1rem;}
+  .hero{ font-size:1.8rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <button class="hamburger-btn" id="hamburger">☰</button>
+    <div class="brand-logo">🌸</div>
+    <div class="brand-name">Nyamoita BFsuma Products</div>
+  </div>
+  <nav class="site-nav">
+    <a href="#home">HOME</a>
+    <a href="#about">ABOUT US</a>
+    <a href="#products">PRODUCTS</a>
+    <a href="#health">HEALTH INFO</a>
+    <a href="#gallery">GALLERY</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</header>
+
+<div class="welcome-message">
+  <div class="scroll-text">
+    Welcome to Nyamoita BFsuma Products — Quality Supplements for Everyday Health
+  </div>
+  <div class="eye-fly">
+    <div class="flyer">We treasure you</div>
+    <div class="eye">👁️</div>
+  </div>
+</div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="close-btn"><button id="closeSidebar">X Close</button></div>
+  <a href="#home">🏠 Home</a>
+  <a href="#about">ℹ️ About Us</a>
+  <a href="#products">🛍️ Products</a>
+  <a href="#health">💊 Health Info</a>
+  <a href="#gallery">📸 Gallery</a>
+  <a href="#contact">📞 Contact</a>
+</aside>
+
+<footer>
+  © 2025 Nyamoita BFsuma Products — Adam's Business Park, Nairobi
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('closeSidebar');
+
+hamburger.addEventListener('click', ()=> sidebar.classList.add('open'));
+closeBtn.addEventListener('click', ()=> sidebar.classList.remove('open'));
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') sidebar.classList.remove('open'); });
+</script>
+</body>
+</html>
